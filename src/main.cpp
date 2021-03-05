@@ -32,30 +32,35 @@ int main(int argc, const char* argv[]) {
     
     for (int i = 1; i < argc; i = i + 2) {
         std::string parameter = argv[i];
-        if (parameter == "-e") {
+        if (parameter == "-e" || parameter == "--entry-time") {
             std::string value = argv[i + 1];
             long pos = value.find(":");
             entry_hour = std::stoi(value.substr(0, pos));
             entry_minute = std::stoi(value.substr(pos + 1, value.length()));
-        } else if (parameter == "-l") {
+
+        } else if (parameter == "-l" || parameter == "--lunch-time") {
             std::string value = argv[i + 1];
             long pos = value.find(":");
             lunch_hour = std::stoi(value.substr(0, pos));
             lunch_minute = std::stoi(value.substr(pos + 1, value.length()));
-        } else if (parameter == "-t") {
+
+        } else if (parameter == "-t" || parameter == "--total-time") {
             std::string value = argv[i + 1];
             long pos = value.find(":");
             total_hour = std::stoi(value.substr(0, pos));
             total_minute = std::stoi(value.substr(pos + 1, value.length()));
-        } else if (parameter == "-h") {
+
+        } else if (parameter == "-h" || parameter == "--help") {
             std::cout << std::endl;
             std::cout << " ---------- calculate exit time ----------" << std::endl;
             std::cout << std::endl;
             std::cout << "  usage: exittime [flag] [value (HH:MM)] " << std::endl;
             std::cout << std::endl;
-            std::cout << "  -e    entry time" << std::endl;
-            std::cout << "  -l    lunch time" << std::endl;
-            std::cout << "  -t    total time" << std::endl;
+            std::cout << "  -e, --entry-time   entry time" << std::endl;
+            std::cout << "  -l, --lunch-time   lunch time" << std::endl;
+            std::cout << "  -t, --total-time   total time" << std::endl;
+            std::cout << std::endl;
+            std::cout << "  -h, --help         display this help" << std::endl;
             std::cout << std::endl;
             exit(0);
         }
