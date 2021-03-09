@@ -1,3 +1,6 @@
+cpexittime_reminder: exittime
+	cp ./src/exittime_reminder ./build/exittime_reminder
+
 exittime: exittime.o
 	g++ -o ./build/exittime ./build/exittime.o
 
