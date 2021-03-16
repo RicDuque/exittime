@@ -1,3 +1,6 @@
+cplunchtime_reminder: cpexittime_reminder
+	cp ./src/lunchtime_reminder ./build/lunchtime_reminder
+
 cpexittime_reminder: exittime
 	cp ./src/exittime_reminder ./build/exittime_reminder
 
@@ -12,3 +15,4 @@ mkdir: clean
 
 clean:
 	rm -rf ./build
+
