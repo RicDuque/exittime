@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Make a new reminder via terminal script
 # args: remind <title> <date> <time>
-
 osascript - "lunch time" "$(date "+%d/%m/%Y")" "$(date -v +60M "+%H:%M:%S")" <<END
 on run argv
     set stringedAll to date (item 2 of argv & " " & item 3 of argv)
