@@ -29,6 +29,7 @@ int main(int argc, const char* argv[]) {
     int lunch_minute = 0;
     int total_hour = 8;
     int total_minute = 48;
+    bool debug = false;
     
     for (int i = 1; i < argc; i = i + 2) {
         std::string parameter = argv[i];
@@ -49,6 +50,8 @@ int main(int argc, const char* argv[]) {
             long pos = value.find(":");
             total_hour = std::stoi(value.substr(0, pos));
             total_minute = std::stoi(value.substr(pos + 1, value.length()));
+        } else if (parameter == "-d" || parameter == "--debbug") {
+            debug = true;
 
         } else if (parameter == "-h" || parameter == "--help") {
             std::cout << std::endl;
@@ -69,15 +72,27 @@ int main(int argc, const char* argv[]) {
     int exit_hour = entry_hour + lunch_hour + total_hour;
     int exit_minute = entry_minute + lunch_minute + total_minute;
     
+    std::cout << std::endl;
+    if (debug) std::cout << "exit_minute: " << exit_minute << std::endl;
+    if (debug) std::cout << "exit_hour: " << exit_hour  << std::endl;
+
     if (exit_minute > 59) {
+        if (debug) std::cout << "recalculating exit minute..."  << std::endl;
+
+        exit_hour += exit_minute / 60;
         exit_minute = exit_minute % 60;
-        exit_hour++;
+
+        if (debug) std::cout << "new exit_minute: " << exit_minute  << std::endl;
+        if (debug) std::cout << "new exit_hour: " << exit_hour  << std::endl;
     }
     
     if (exit_hour > 23) {
+        if (debug) std::cout << "recalculating exit hour..."  << std::endl;
         exit_hour = exit_hour % 24;
+        if (debug) std::cout << "new exit_hour: " << exit_hour  << std::endl;
     }
     
+    if (debug) std::cout << std::endl;
     if (exit_hour < 10) {
         std::cout << "0";
     }
